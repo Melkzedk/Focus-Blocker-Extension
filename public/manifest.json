@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Blocker",
+  "version": "1.0.0",
+  "description": "Block distracting websites during focus hours.",
+  "action": {
+    "default_title": "Focus Blocker",
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "alarms",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked.html", "blocked.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
