@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Blocked by Focus Blocker</title>
+  <link rel="stylesheet" href="blocked.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>Stay Focused 🚫</h1>
+    <p>This site is blocked during your focus hours.</p>
+
+    <div class="actions">
+      <button id="back">Go Back</button>
+      <button id="snooze">Snooze 5 minutes</button>
+    </div>
+
+    <small>
+      You can edit your list, days, and hours from the extension popup.
+    </small>
+  </div>
+
+  <script>
+    document.getElementById('back').addEventListener('click', () => {
+      if (history.length > 1) history.back(); else window.close();
+    });
+
+    document.getElementById('snooze').addEventListener('click', () => {
+      const FIVE_MIN = 5 * 60 * 1000;
+      const until = Date.now() + FIVE_MIN;
+      chrome.storage.sync.set({ snoozeUntil: until }, () => {
+        // Navigate away so the rule no longer applies
+        location.href = 'about:blank';
+      });
+    });
+  </script>
+</body>
+</html>
